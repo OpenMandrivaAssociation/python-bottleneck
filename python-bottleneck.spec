@@ -1,7 +1,7 @@
 %define tarname	Bottleneck
 %define name	python-bottleneck
 %define version 0.5.0
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary:	Fast NumPy array functions written in Cython
 Name:		%{name}
@@ -9,6 +9,7 @@ Version:	%{version}
 Release:	%{release}
 Source0:	http://pypi.python.org/packages/source/B/%{tarname}/%{tarname}-%{version}.tar.gz
 Source1:	sphinxext.tar.gz
+Patch0:		lm-0.5.0.patch
 License:	BSD
 Group:		Development/Python
 Url:		http://pypi.python.org/pypi/Bottleneck
@@ -22,6 +23,7 @@ Cython.
 
 %prep
 %setup -q -n %{tarname}-%{version}
+%patch0 -p0
 
 %build
 %__python setup.py build

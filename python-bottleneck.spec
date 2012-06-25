@@ -1,7 +1,12 @@
 %define tarname	Bottleneck
 %define name	python-bottleneck
-%define version 0.5.0
-%define release %mkrel 2
+%define version 0.6.0
+%define	rel		1
+%if %mdkversion < 201100
+%define release %mkrel %{rel}
+%else
+%define	release	%{rel}
+%endif
 
 Summary:	Fast NumPy array functions written in Cython
 Name:		%{name}
@@ -30,7 +35,7 @@ Cython.
 
 %install
 %__rm -rf %{buildroot}
-PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=FILE_LIST
+PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot}
 pushd doc
 rm -rf sphinxext
 tar zxf %SOURCE1
@@ -42,6 +47,9 @@ popd
 %clean
 %__rm -rf %{buildroot}
 
-%files -f FILE_LIST
+%files
 %defattr(-,root,root)
 %doc LICENSE README.rst RELEASE.rst doc/build/html
+%py_platsitedir/Bottleneck*
+%py_platsitedir/bottleneck*
+

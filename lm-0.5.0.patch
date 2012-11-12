@@ -1,0 +1,15 @@
+--- setup.py.bak	2011-08-05 16:13:41.367687047 -0400
++++ setup.py	2011-08-05 16:18:28.736202481 -0400
+@@ -91,8 +91,9 @@
+       ext_package='bottleneck',
+       ext_modules=[Extension("func",
+                      sources=["bottleneck/src/func/%sbit/func.c" % bits],
+-                     include_dirs=[np.get_include()]),           
++                     include_dirs=[np.get_include()],
++                     libraries=['m']),                   
+                    Extension("move",
+                      sources=["bottleneck/src/move/%sbit/move.c" % bits],
+-                     include_dirs=[np.get_include()])]
+-     )                
++                     include_dirs=[np.get_include()],
++                     libraries=['m'])])

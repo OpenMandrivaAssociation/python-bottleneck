@@ -3,7 +3,7 @@
 Summary:	Fast NumPy array functions written in Cython
 Name:		python-bottleneck
 Version:	0.6.0
-Release:	2
+Release:	3
 Source0:	http://pypi.python.org/packages/source/B/%{tarname}/%{tarname}-%{version}.tar.gz
 Source1:	sphinxext.tar.gz
 Patch0:		lm-0.5.0.patch

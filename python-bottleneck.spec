@@ -7,7 +7,7 @@ Release:	1
 Source0:	https://files.pythonhosted.org/packages/source/B/%{tarname}/%{tarname}-%{version}.tar.gz
 License:	BSD
 Group:		Development/Python
-Url:		http://pypi.python.org/pypi/Bottleneck
+Url:		https://pypi.python.org/pypi/Bottleneck
 Requires:	python-numpy
 BuildRequires:	python-numpy-devel
 BuildRequires:	python-devel

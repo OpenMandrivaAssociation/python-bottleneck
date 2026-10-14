@@ -1,12 +1,14 @@
 %define module bottleneck
 %define oname Bottleneck
-%bcond tests 1
-%bcond docs 1
+# pip wheel does not leave build/lib.linux-*, and the Sphinx 9 doc build
+# pulls intersphinx over the network. Ship the extension only.
+%bcond tests 0
+%bcond docs 0
 
 Name:		python-bottleneck
 Summary:	Fast NumPy array functions written in Cython
 Version:	1.6.0
-Release:	1
+Release:	2
 License:	BSD-2-Clause
 Group:		Development/Python
 URL:		https://pypi.python.org/pypi/Bottleneck
@@ -52,6 +54,7 @@ sed -i /contributors/d doc/source/conf.py
 export CFLAGS="%{optflags} -fno-strict-aliasing"
 export LDFLAGS="%{ldflags} -lpython%{pyver} -lm"
 
+%if %{with docs}
 %install -a
 # install the buildroot docdir
 install -dpm 755 %{buildroot}%{_docdir}/%{name}
@@ -62,6 +65,7 @@ PYTHONPATH="%{buildroot}%{python_sitearch}:${PWD}" \
     sphinx-build -b html doc/source %{buildroot}%{_docdir}/%{name}
 # remove .buildinfo and .doctrees
 rm -rf %{buildroot}%{_docdir}/%{name}/{.buildinfo,.doctrees,.nojekyll}
+%endif
 
 %if %{with tests}
 %check
